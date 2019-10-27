@@ -17,5 +17,8 @@ install:
 start:
 	yarn start:dev
 
+web-build:
+	cd client && yarn build
+	
 deploy:
 	gcloud app deploy

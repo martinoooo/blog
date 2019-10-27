@@ -1,31 +1,17 @@
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
 
 module.exports = {
   entry: {
-    app: path.resolve(__dirname, './src/index.js'),
-    print: path.resolve(__dirname, './src/print.js'),
+    app: path.resolve(__dirname, '../src/index.js'),
   },
   output: {
     filename: '[name].bundle.js',
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, '../dist'),
     publicPath: '/',
   },
-  devtool: 'inline-source-map',
-  // 使用webpack-dev-server
-  devServer: {
-    contentBase: './dist',
-  },
-  plugins: [
-    new ManifestPlugin(),
-    new CleanWebpackPlugin(),
-    new HtmlWebpackPlugin({
-      title: 'Output Management',
-    }),
-  ],
-  mode: 'development',
+  plugins: [new ManifestPlugin(), new CleanWebpackPlugin()],
   module: {
     rules: [
       {
