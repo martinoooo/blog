@@ -5,6 +5,9 @@ const common = require('./webpack.common.js');
 
 module.exports = merge(common, {
   devtool: 'source-map',
+  output: {
+    filename: '[name].[chunkhash].js',
+  },
   plugins: [
     new UglifyJSPlugin({
       sourceMap: true,

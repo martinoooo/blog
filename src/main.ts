@@ -3,6 +3,7 @@ import { NestExpressApplication } from '@nestjs/platform-express';
 import { AppModule } from './app.module';
 import { logger } from './common/middleware/logger.middleware';
 import { join } from 'path';
+import loadJs from './common/helper/loadJs';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
@@ -11,6 +12,7 @@ async function bootstrap() {
   app.useStaticAssets(join(__dirname, '..', 'client/dist'));
   app.setBaseViewsDir(join(__dirname, '..', 'views'));
   app.setViewEngine('hbs');
+  loadJs();
 
   await app.listen(Number(process.env.PORT) || 8080);
 }

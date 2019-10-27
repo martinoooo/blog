@@ -3,7 +3,8 @@ Usage: make [target] \n\n\
 Available targets:\n\
 install           安装依赖\n\
 deploy            部署\n\
-start             运行server\n"
+web               运行client\n\
+server            运行server\n"
 
 yyarn = yarn --registry=https://registry.npm.taobao.org  --frozen-lockfile
 
@@ -14,11 +15,14 @@ usage:
 install: 
 	yyarn
 
-start:
+server:
 	yarn start:dev
+
+web:
+	cd client && yarn dev
 
 web-build:
 	cd client && yarn build
 	
-deploy:
+deploy: web-build 
 	gcloud app deploy

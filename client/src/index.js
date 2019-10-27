@@ -8,7 +8,7 @@ function component() {
   var btn = document.createElement('button');
 
   // Lodash, now imported by this script
-  element.innerHTML = _.join(['Hello', 'we2423bpack'], ' ');
+  element.innerHTML = _.join(['Hello', 'webpack'], ' ');
   element.classList.add('hello');
 
   console.log(Data);

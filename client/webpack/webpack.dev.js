@@ -10,6 +10,9 @@ module.exports = merge(common, {
     // hot: true, // 设置HMR，使页面不刷新的情况下重载
     writeToDisk: true,
   },
+  output: {
+    filename: '[name].js',
+  },
   plugins: [
     // new webpack.NamedModulesPlugin(), // 设置HMR，使页面不刷新的情况下重载
     // new webpack.HotModuleReplacementPlugin(), // 设置HMR，使页面不刷新的情况下重载
