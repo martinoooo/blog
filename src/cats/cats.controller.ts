@@ -6,8 +6,8 @@ import {
   Post,
   UseGuards,
   UseInterceptors,
-  Response,
   Render,
+  Res,
 } from '@nestjs/common';
 import { Roles } from '../common/decorators/roles.decorator';
 // import { RolesGuard } from '../common/guards/roles.guard';
@@ -17,6 +17,7 @@ import { CatsService } from './cats.service';
 import { CreateCatDto } from './dto/create-cat.dto';
 import { Cat } from './interfaces/cat.interface';
 import { join } from 'path';
+import { Response } from 'express';
 
 @Controller()
 // @UseGuards(RolesGuard)
@@ -25,9 +26,8 @@ export class CatsController {
   constructor(private readonly catsService: CatsService) {}
 
   @Get()
-  @Render('index')
-  root() {
-    return { message: 'Hello world!' };
+  root(@Res() res: Response) {
+    return res.render('material');
   }
 
   // @Post()
