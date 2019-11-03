@@ -25,22 +25,14 @@ import { Response } from 'express';
 export class CatsController {
   constructor(private readonly catsService: CatsService) {}
 
-  @Get()
-  root(@Res() res: Response) {
-    return res.render('material');
-  }
-
   // @Post()
   // @Roles('admin')
   // async create(@Body() createCatDto: CreateCatDto) {
   //   this.catsService.create(createCatDto);
   // }
 
-  // @Get(':id')
-  // findOne(
-  //   @Param('id', new ParseIntPipe())
-  //   id,
-  // ) {
-  //   // logic
-  // }
+  @Get('/api/**')
+  findOne() {
+    console.log(32423);
+  }
 }
