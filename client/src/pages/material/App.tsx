@@ -3,6 +3,7 @@ import Layout from './components/Layout';
 import { createMuiTheme } from '@material-ui/core/styles';
 import { indigo } from '@material-ui/core/colors';
 import { ThemeProvider } from '@material-ui/styles';
+import Home from './components/Home';
 import {
   BrowserRouter as Router,
   Switch,
@@ -13,7 +14,9 @@ import {
 
 const theme = createMuiTheme({
   palette: {
-    primary: indigo,
+    primary: {
+      main: '#000',
+    },
   },
 });
 
@@ -22,6 +25,17 @@ export default function App() {
     <ThemeProvider theme={theme}>
       <Router>
         <Layout></Layout>
+        <Switch>
+          <Route exact path="/">
+            <Home />
+          </Route>
+          <Route path="/blog">
+            <div>blog</div>
+          </Route>
+          <Route path="/about">
+            <div>about</div>
+          </Route>
+        </Switch>
       </Router>
     </ThemeProvider>
   );

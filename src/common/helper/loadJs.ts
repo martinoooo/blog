@@ -11,8 +11,11 @@ export default () => {
   const config = require(entries[0]);
   hbs.registerHelper('load_js', file => {
     const src = config[file];
-    let scriptStr = `<script src="${src}" charset="utf-8""`;
-    scriptStr += '></script>';
-    return new hbs.SafeString(scriptStr);
+    if (src) {
+      let scriptStr = `<script src="${src}" charset="utf-8"`;
+      scriptStr += '></script>';
+      return new hbs.SafeString(scriptStr);
+    }
+    return new hbs.SafeString('');
   });
 };

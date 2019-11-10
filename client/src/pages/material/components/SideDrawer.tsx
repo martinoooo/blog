@@ -8,7 +8,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import { Link } from 'react-router-dom';
-import { ROUTER } from '../../../constants';
+import { NAV } from '../constants';
 
 const useStyles = makeStyles(theme => ({
   menuButton: {
@@ -45,7 +45,7 @@ export default function SideDrawer() {
       onKeyDown={toggleDrawer(false)}
     >
       <List>
-        {ROUTER.map((link, index) => (
+        {NAV.map((link, index) => (
           <ListItem button component={Link} to={link.link} key={link.name}>
             <ListItemIcon>{link.icon}</ListItemIcon>
             <ListItemText primary={link.name} />

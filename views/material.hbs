@@ -3,16 +3,23 @@
 
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no">
     <title>App</title>
     <style>
         body {
             margin: 0;
+        }
+
+        #app {
+            height: 100vh;
+            background: #000;
         }
     </style>
 </head>
 
 <body>
     <div id="app"></div>
+    {{ load_js 'vendors.js'}}
     {{ load_js 'material.js'}}
 </body>
 
