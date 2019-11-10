@@ -1,7 +1,6 @@
-import * as React from 'react';
+import React from 'react';
 import Layout from './components/Layout';
 import { createMuiTheme } from '@material-ui/core/styles';
-import { indigo } from '@material-ui/core/colors';
 import { ThemeProvider } from '@material-ui/styles';
 import Home from './components/Home';
 import {
@@ -11,6 +10,8 @@ import {
   Link,
   useParams,
 } from 'react-router-dom';
+
+const About = React.lazy(() => import('./components/About'));
 
 const theme = createMuiTheme({
   palette: {
@@ -25,17 +26,15 @@ export default function App() {
     <ThemeProvider theme={theme}>
       <Router>
         <Layout></Layout>
-        <Switch>
-          <Route exact path="/">
-            <Home />
-          </Route>
-          <Route path="/blog">
-            <div>blog</div>
-          </Route>
-          <Route path="/about">
-            <div>about</div>
-          </Route>
-        </Switch>
+        <React.Suspense fallback={<div>Loading...</div>}>
+          <Switch>
+            <Route exact path="/" component={Home}></Route>
+            <Route path="/blog">
+              <div>blog</div>
+            </Route>
+            <Route path="/about" component={About}></Route>
+          </Switch>
+        </React.Suspense>
       </Router>
     </ThemeProvider>
   );

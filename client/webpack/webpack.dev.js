@@ -13,6 +13,7 @@ module.exports = merge(common, {
   },
   output: {
     filename: '[name].js',
+    chunkFilename: '[name].js',
   },
   plugins: [
     // new webpack.NamedModulesPlugin(), // 设置HMR，使页面不刷新的情况下重载
