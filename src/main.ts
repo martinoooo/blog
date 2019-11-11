@@ -10,6 +10,7 @@ async function bootstrap() {
   app.use(logger);
 
   app.useStaticAssets(join(__dirname, '..', 'client/dist'));
+  app.useStaticAssets(join(__dirname, '..', 'articles'));
   app.setBaseViewsDir(join(__dirname, '..', 'views'));
   app.setViewEngine('hbs');
   loadJs();

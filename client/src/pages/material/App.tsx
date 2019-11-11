@@ -12,6 +12,7 @@ import {
 } from 'react-router-dom';
 
 const About = React.lazy(() => import('./components/About'));
+const Blog = React.lazy(() => import('./components/Blog'));
 
 const theme = createMuiTheme({
   palette: {
@@ -29,9 +30,7 @@ export default function App() {
         <React.Suspense fallback={<div>Loading...</div>}>
           <Switch>
             <Route exact path="/" component={Home}></Route>
-            <Route path="/blog">
-              <div>blog</div>
-            </Route>
+            <Route path="/blog" component={Blog}></Route>
             <Route path="/about" component={About}></Route>
           </Switch>
         </React.Suspense>
