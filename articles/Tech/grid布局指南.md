@@ -12,7 +12,7 @@ Grid Layout 是 CSS 的一种新的布局模型，它具有强大的功能来控
 - 排行榜的高度固定，当该区域有空余的位置时，其置于顶部
 - 控制区域在空间多余时置于中间
 
-![](https://user-gold-cdn.xitu.io/2019/5/19/16acf45da3b7ed9f?w=758&h=490&f=png&s=114177)
+![](https://i.loli.net/2019/11/16/ghzCa2NnoSuTZj9.png)
 
 这是一个最简单的可以应用 grid 的示例，下面放上代码：
 
@@ -62,7 +62,7 @@ Grid Layout 是 CSS 的一种新的布局模型，它具有强大的功能来控
 
 grid 的还有一个特性就是 grid 可以让我们的布局与 html 语义结构解耦出来，不用根据 html 所定义的结构顺序来渲染，试我们可以在不同宽度的屏幕上展示不同的布局。
 
-![](https://user-gold-cdn.xitu.io/2019/5/28/16afc55d78889d58?w=472&h=590&f=png&s=48932)
+![](https://i.loli.net/2019/11/16/17wAP9ZnvxQKUaH.png)
 接下来一步步分析 grid 的语法：
 
 ### 生成 grid 容器
@@ -88,7 +88,7 @@ grid-template-columns: [first nav-start] 150px [main-start] 1fr [last];
 grid-template-rows: [first header-start] 50px [main-start] 1fr [footer-start] 50px [last];
 ```
 
-![grid-named-lines](https://user-gold-cdn.xitu.io/2019/5/28/16afc39ca6878974?w=572&h=310&f=png&s=3029)
+![grid-named-lines](https://i.loli.net/2019/11/16/atEZfcNP1LOegX6.png)
 一条网格线可以有多个名字。  
 grid-template-\*的大致的语法如下：**[ < line-names > ? < track-size > ]+ < line-names >?**  
 其中 track size 就是两条线之间的空间，我们这里定义具体的长度：可以包括绝对长度单位，百分比长度单位，flexible 长度（在 grid 当中是 fr），max-content，min-content，minmax(min, max)，auto 等，这个在之后会做详细的讨论。  
@@ -119,7 +119,7 @@ grid-template-areas 会默认为这一个 cell 上面的线生成一个名字，
 
 当我们定义的网格线范围小于 grid 容器的时候，我们可以声明 grid 的布局方式。通过 justify-content 和 align-content 来定义。使用方法与 flexbox 中的类似。 比如值为 end 可以让整个 content 居于 grid container 的尾部。space-between 可以让网格线分离，注意这同时会加大 gap 的距离。
 
-![](https://user-gold-cdn.xitu.io/2019/5/28/16afd0dbc27ab124?w=1002&h=430&f=png&s=46964)
+![](https://i.loli.net/2019/11/16/68dYpxtPi1JswLH.png)
 
 ### 声明对齐方式
 
@@ -129,7 +129,7 @@ grid-template-areas 会默认为这一个 cell 上面的线生成一个名字，
 
 ### 放置 items
 
-![](https://user-gold-cdn.xitu.io/2019/5/28/16afc41660318065?w=1206&h=218&f=png&s=75727)
+![](https://i.loli.net/2019/11/16/hbydNP4VtvmaGLi.png)
 通过这个图片上的属性值我们可以放置我们的 items。比如
 
 ```css

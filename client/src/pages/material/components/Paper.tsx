@@ -1,32 +1,44 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
 import { getArticle } from '../../../api';
 import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
+import { ISelectArticle } from '../../../definetions';
 import ReactMarkdown from 'react-markdown';
+import hljs from 'highlight.js';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     paper: {
       flex: 'auto',
       margin: '0 16px',
+      padding: '20px',
     },
   }),
 );
 
-export default function MediaCard() {
+interface IProps {
+  selectArticle: ISelectArticle;
+}
+
+export default function MediaCard({ selectArticle }: IProps) {
   const classes = useStyles({});
   const [article, setArticle] = useState('');
+  const articeEle = useRef(null);
 
   useEffect(() => {
-    getArticle('tech', 'grid.md').then(res => {
-      setArticle(res);
-    });
-  }, []);
+    if (selectArticle) {
+      getArticle(selectArticle).then(res => {
+        setArticle(res);
+        // hljs.highlightBlock(articeEle.current);
+      });
+    }
+  }, [selectArticle]);
 
   return (
     <Paper className={classes.paper}>
-      <ReactMarkdown source={article}></ReactMarkdown>
+      <div ref={articeEle}>
+        <ReactMarkdown source={article}></ReactMarkdown>
+      </div>
     </Paper>
   );
 }

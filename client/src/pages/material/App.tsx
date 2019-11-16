@@ -10,6 +10,7 @@ import {
   Link,
   useParams,
 } from 'react-router-dom';
+import './index.less';
 
 const About = React.lazy(() => import('./components/About'));
 const Blog = React.lazy(() => import('./components/Blog'));

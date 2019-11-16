@@ -1,38 +1,40 @@
 import { Injectable } from '@nestjs/common';
-import { Cat } from './interfaces/cat.interface';
 import fg = require('fast-glob');
 import path = require('path');
 import fs = require('fs');
 
 @Injectable()
 export class CatsService {
-  private readonly cats: Cat[] = [];
+  private entries = null;
 
   findOne(folder, name) {
     const entries = fg.sync(
-      path.join(__dirname, '../../', 'articles', folder, name),
+      path.join(__dirname, '../../', 'articles', folder, name + '.md'),
     );
     const file = fs.readFileSync(entries[0], 'utf8');
     return file;
   }
 
   findList() {
-    const entries = {};
+    if (!this.entries) {
+      const entries = {};
 
-    const directories = fg.sync('*', {
-      absolute: false,
-      onlyDirectories: true,
-      cwd: path.join(__dirname, '../../', 'articles'),
-    });
-
-    directories.forEach(directory => {
-      const entry = fg.sync('*', {
+      const directories = fg.sync('*', {
         absolute: false,
-        cwd: path.join(__dirname, '../../', 'articles', directory),
+        onlyDirectories: true,
+        cwd: path.join(__dirname, '../../', 'articles'),
       });
-      entries[directory] = entry;
-    });
 
-    return entries;
+      directories.forEach(directory => {
+        const entry = fg.sync('*', {
+          absolute: false,
+          cwd: path.join(__dirname, '../../', 'articles', directory),
+        });
+        entries[directory] = entry.map(file => file.replace('.md', ''));
+      });
+
+      this.entries = entries;
+    }
+    return this.entries;
   }
 }
