@@ -4,7 +4,7 @@ my website
 
 ## Description
 
-[Blog](https://gothic-gradient-256506.appspot.com/)
+[Blog](http://www.martinqaq.monster/)
 
 ## Installation
 
@@ -17,6 +17,7 @@ $ make install
 ```bash
 # development
 $ make web
+(wait till server is ready)
 $ make server
 
 # deploy

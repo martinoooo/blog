@@ -20,7 +20,7 @@ export default function MediaCard() {
     <div className={classes.root}>
       <img
         className={classes.media}
-        src="https://i.loli.net/2019/11/10/mEBHzkRyYf6UNoS.jpg"
+        src="https://i.loli.net/2019/11/25/xok3TPmNuf8jyr7.png"
       ></img>
     </div>
   );
