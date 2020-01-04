@@ -5,7 +5,7 @@ import fs = require('fs');
 // tslint:disable-next-line: no-var-requires
 const axios = require('axios');
 import { Base64 } from 'js-base64';
-import { ACCESS_TOKEN } from '../../config';
+import { ACCESS_TOKEN } from '../config';
 
 const BASE = 'https://api.github.com';
 const GET_CONTENT = BASE + '/repos/martinoooo/blog/contents/';
