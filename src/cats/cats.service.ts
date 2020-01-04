@@ -8,7 +8,7 @@ import { Base64 } from 'js-base64';
 
 const BASE = 'https://api.github.com';
 const GET_CONTENT = BASE + '/repos/martinoooo/blog/contents/';
-const END = '?access_token=5d1cb8e2e68ddc3c753f0fa0d52c0734f2475c7f';
+const END = '?access_token=9a33207f3d90e4f6f16fad55a721b1021958fcfe';
 
 @Injectable()
 export class CatsService {
@@ -29,7 +29,9 @@ export class CatsService {
 
       const entries = [];
       for (const folder of folders) {
-        const { data } = await axios.get(GET_CONTENT + folder.path + END);
+        const { data } = await axios.get(
+          GET_CONTENT + encodeURI(folder.path) + END,
+        );
         const children = data.map(n => ({
           name: n.name.replace('.md', ''),
           path: n.path,
