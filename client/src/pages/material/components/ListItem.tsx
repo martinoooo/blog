@@ -6,7 +6,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Collapse from '@material-ui/core/Collapse';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
-import { ISelectArticle } from '../../../definetions';
+import { ISelectArticle, IFolder } from '../../../definetions';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 interface IProps {
   text: string;
-  node: string[];
+  node: IFolder[];
   select: ISelectArticle;
   handleSelect: (name: string) => void;
 }
@@ -43,17 +43,17 @@ export default function({ text, node, handleSelect, select }: IProps) {
       </ListItem>
       <Collapse in={open} timeout="auto">
         <List component="div" disablePadding>
-          {node.map(name => (
+          {node.map((article: IFolder) => (
             <ListItem
-              key={name}
+              key={article.name}
               button
               className={classes.nested}
-              onClick={() => handleListItemClick(name)}
+              onClick={() => handleListItemClick(article.path)}
               selected={
-                select && select.folder === text && select.name === name
+                select && select.folder === text && select.name === article.path
               }
             >
-              <ListItemText primary={name} />
+              <ListItemText primary={article.name} />
             </ListItem>
           ))}
         </List>

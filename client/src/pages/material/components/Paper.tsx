@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 interface IProps {
-  selectArticle: ISelectArticle;
+  selectArticle: string;
 }
 
 export default function MediaCard({ selectArticle }: IProps) {

@@ -33,15 +33,15 @@ export class CatsController {
   // }
 
   @Get('/articles/list')
-  findList() {
-    const entries = this.catsService.findList();
+  async findList() {
+    const entries = await this.catsService.findList();
     return entries;
   }
 
   @Get('/article')
-  findOne(@Req() request: Request) {
-    const { folder, name } = request.query;
-    const file = this.catsService.findOne(folder, name);
+  async findOne(@Req() request: Request) {
+    const { name } = request.query;
+    const file = await this.catsService.findOne(name);
     return file;
   }
 }

@@ -5,7 +5,7 @@ import ListSubheader from '@material-ui/core/ListSubheader';
 import List from '@material-ui/core/List';
 import ListItem from './ListItem';
 import Paper from './Paper';
-import { ISelectArticle } from '../../../definetions';
+import { ISelectArticle, IFolders } from '../../../definetions';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -21,22 +21,18 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-interface IList {
-  [n: string]: string[];
-}
-
 export default function MediaCard() {
   const classes = useStyles({});
-  const [list, setList] = useState<IList>({});
+  const [list, setList] = useState<IFolders[]>([]);
   const [selectArticle, setSelectArticle] = useState<ISelectArticle>(null);
 
   useEffect(() => {
     getArticleList().then(res => {
       setList(res);
-      const folder = Object.keys(res)[0];
+      const folder = res[0];
       setSelectArticle({
-        folder,
-        name: res[folder][0],
+        folder: folder.name,
+        name: folder.children[0].path,
       });
     });
   }, []);
@@ -55,17 +51,17 @@ export default function MediaCard() {
         aria-labelledby="nested-list-subheader"
         className={classes.list}
       >
-        {Object.keys(list).map(folder => (
+        {list.map(folder => (
           <ListItem
-            key={folder}
-            text={folder}
-            node={list[folder]}
-            handleSelect={(name: string) => handleSelect(folder, name)}
+            key={folder.name}
+            text={folder.name}
+            node={folder.children}
+            handleSelect={(name: string) => handleSelect(folder.name, name)}
             select={selectArticle}
           />
         ))}
       </List>
-      <Paper selectArticle={selectArticle} />
+      <Paper selectArticle={selectArticle && selectArticle.name} />
     </div>
   );
 }
