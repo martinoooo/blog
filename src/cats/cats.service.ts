@@ -16,36 +16,32 @@ export class CatsService {
   private entries = null;
 
   async findOne(name) {
-    try {
-      const { data } = await axios.get(GET_CONTENT + encodeURI(name) + END);
-      return Base64.decode(data.content);
-    } catch (error) {
-      return error;
-    }
+    const { data } = await axios.get(GET_CONTENT + encodeURI(name), {
+      headers: { Authorization: `token ${ACCESS_TOKEN}` },
+    });
+    return Base64.decode(data.content);
   }
 
   async findList() {
-    try {
-      const { data: folders } = await axios.get(GET_CONTENT + 'articles' + END);
+    const { data: folders } = await axios.get(GET_CONTENT + 'articles', {
+      headers: { Authorization: `token ${ACCESS_TOKEN}` },
+    });
 
-      const entries = [];
-      for (const folder of folders) {
-        const { data } = await axios.get(
-          GET_CONTENT + encodeURI(folder.path) + END,
-        );
-        const children = data.map(n => ({
-          name: n.name.replace('.md', ''),
-          path: n.path,
-        }));
-        entries.push({
-          name: folder.name,
-          path: folder.path,
-          children,
-        });
-      }
-      return entries;
-    } catch (error) {
-      return error;
+    const entries = [];
+    for (const folder of folders) {
+      const { data } = await axios.get(GET_CONTENT + encodeURI(folder.path), {
+        headers: { Authorization: `token ${ACCESS_TOKEN}` },
+      });
+      const children = data.map(n => ({
+        name: n.name.replace('.md', ''),
+        path: n.path,
+      }));
+      entries.push({
+        name: folder.name,
+        path: folder.path,
+        children,
+      });
     }
+    return entries;
   }
 }

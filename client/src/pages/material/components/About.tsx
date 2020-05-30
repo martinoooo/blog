@@ -33,7 +33,7 @@ export default function ImgMediaCard() {
             component="img"
             alt="I love U"
             height="175"
-            image="https://i.loli.net/2019/11/10/gq52prZTHItSuwA.gif"
+            image="https://i.loli.net/2020/05/30/T7pf8PLZCkq3nFu.jpg"
             title="I love U"
           />
           <CardContent>
