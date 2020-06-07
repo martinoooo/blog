@@ -8,5 +8,9 @@
   "workspaces": [
     "client",
     "server"
-  ]
+  ],
+  "scripts": {
+    "gcp-build": "cd server && npm run build",
+    "start": "node server/dist/main"
+  }
 }

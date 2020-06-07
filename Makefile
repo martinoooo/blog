@@ -4,7 +4,7 @@ Available targets:\n\
 install           安装依赖\n\
 deploy            部署\n\
 web               运行client\n\
-server            运行server\n"
+serve             运行server\n"
 
 yyarn = yarn --registry=https://registry.npm.taobao.org  --frozen-lockfile
 
@@ -15,8 +15,8 @@ usage:
 install: 
 	yyarn
 
-server:
-	yarn start:dev
+serve:
+	cd server && yarn start:dev
 
 web:
 	cd client && yarn dev

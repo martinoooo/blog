@@ -4,7 +4,7 @@ import path = require('path');
 
 export default () => {
   const entries = fg.sync(
-    path.join(__dirname, '../../..', 'client/dist/manifest.json'),
+    path.join(__dirname, '../../../..', 'client/dist/manifest.json'),
     { dot: true },
   );
 
