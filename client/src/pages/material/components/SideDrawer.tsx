@@ -46,7 +46,15 @@ export default function SideDrawer() {
     >
       <List>
         {NAV.map((link, index) => (
-          <ListItem button component={Link} to={link.link} key={link.name}>
+          <ListItem
+            button
+            component={Link}
+            to={{
+              pathname: link.link,
+              search: window.location.search,
+            }}
+            key={link.name}
+          >
             <ListItemIcon>{link.icon}</ListItemIcon>
             <ListItemText primary={link.name} />
           </ListItem>

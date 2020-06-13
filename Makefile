@@ -19,7 +19,7 @@ serve:
 	cd server && yarn start:dev
 
 web:
-	cd client && yarn dev -p $(module)
+	cd client && yarn dev -p $(page)
 
 web-build:
 	cd client && yarn build

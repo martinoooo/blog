@@ -9,6 +9,7 @@ import './index.less';
 
 const About = React.lazy(() => import('./components/About'));
 const Blog = React.lazy(() => import('./components/Blog'));
+const UI = React.lazy(() => import('./components/Ui'));
 
 const theme = createMuiTheme({
   palette: {
@@ -34,6 +35,7 @@ export default function App() {
             <Route exact path="/" component={Home}></Route>
             <Route path="/blog" component={Blog}></Route>
             <Route path="/about" component={About}></Route>
+            <Route path="/ui" component={UI}></Route>
           </Switch>
         </React.Suspense>
       </Router>

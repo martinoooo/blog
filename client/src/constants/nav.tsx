@@ -11,14 +11,18 @@ type INav = Array<{
 export const NAV: INav = [
   {
     name: 'Homepage',
-    link: '',
+    link: '/',
   },
   {
     name: 'Blog',
-    link: 'blog',
+    link: '/blog',
   },
   {
     name: 'About',
-    link: 'about',
+    link: '/about',
+  },
+  {
+    name: 'Change UI',
+    link: '/ui',
   },
 ];

@@ -16,9 +16,12 @@ $ make install
 
 ```bash
 # development
-$ make web (如果要单独打包某个页面，可以加 page=xxx )
-(wait till server is ready)
+$ make web (如果要单独打包某个页面，可以加 page=xxx ---> xxx为client/src/pages下面的文件夹名字)
+
+(等待web构建完成之后)
+
 $ make serve
+$ open http://localhost:8080/
 
 # deploy
 $ make deploy
