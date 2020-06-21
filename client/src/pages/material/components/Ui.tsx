@@ -22,8 +22,14 @@ const useStyles = makeStyles({
 
 export default function ImgMediaCard() {
   const classes = useStyles({});
+
   const changeUI = (value: string) => {
-    window.location.href = window.location.origin + '?ui=' + value;
+    try {
+      localStorage.setItem('ui', value);
+      window.location.reload();
+    } catch (_) {
+      //
+    }
   };
 
   return (

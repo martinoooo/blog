@@ -15,6 +15,6 @@ async function bootstrap() {
   app.setViewEngine('hbs');
   loadJs();
 
-  await app.listen(Number(process.env.PORT) || 8080);
+  await app.listen(Number(process.env.PORT) || 3000);
 }
 bootstrap();

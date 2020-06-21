@@ -9,6 +9,7 @@ export default () => {
   );
 
   const config = require(entries[0]);
+
   hbs.registerHelper('load_js', file => {
     const src = config[file];
     if (src) {
@@ -17,5 +18,12 @@ export default () => {
       return new hbs.SafeString(scriptStr);
     }
     return new hbs.SafeString('');
+  });
+
+  hbs.registerHelper('add_manifest', file => {
+    const scriptStr = `<script>window.manifest = ${JSON.stringify(
+      config,
+    )}</script>`;
+    return new hbs.SafeString(scriptStr);
   });
 };
