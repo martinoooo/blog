@@ -1,13 +1,9 @@
-import { Injectable } from '@nestjs/common';
-import fg = require('fast-glob');
-import path = require('path');
-import fs = require('fs');
-// tslint:disable-next-line: no-var-requires
+import { Provider } from '@martinoooo/route-plugin';
 const axios = require('axios');
 import { Base64 } from 'js-base64';
 import { ACCESS_TOKEN, GET_CONTENT } from '../config';
 
-@Injectable()
+@Provider()
 export class CatsService {
   private entries = null;
 
@@ -28,7 +24,7 @@ export class CatsService {
       const { data } = await axios.get(GET_CONTENT + encodeURI(folder.path), {
         headers: { Authorization: `token ${ACCESS_TOKEN}` },
       });
-      const children = data.map(n => ({
+      const children = data.map((n) => ({
         name: n.name.replace('.md', ''),
         path: n.path,
       }));

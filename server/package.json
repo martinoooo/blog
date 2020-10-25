@@ -5,11 +5,13 @@
   "author": "",
   "license": "MIT",
   "scripts": {
-    "start": "nodemon --watch 'src/**.ts' --exec \"ts-node\" src/main.ts"
+    "start": "nodemon --watch 'src/**/**.ts' --exec \"ts-node\" src/main.ts"
   },
   "main": "dist/main.js",
   "dependencies": {
-    "@martinoooo/dependency-injection": "0.0.2",
+    "@martinoooo/dependency-injection": "^0.0.4",
+    "@martinoooo/route-plugin": "0.0.2",
+    "js-base64": "^3.5.2",
     "koa": "^2.13.0",
     "reflect-metadata": "^0.1.13"
   },

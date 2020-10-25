@@ -1,6 +1,12 @@
 import 'reflect-metadata';
-import { Container } from '@martinoooo/dependency-injection';
-import { AppModule } from './app.module';
+import { useKoaServer } from '@martinoooo/route-plugin';
+import { CatsController } from './cats/cats.controller';
+import Koa from 'koa';
 
-const app = Container.get<AppModule>(AppModule);
-app.init();
+const app = new Koa();
+
+useKoaServer(app, {
+  routers: [CatsController],
+});
+
+app.listen(3001);

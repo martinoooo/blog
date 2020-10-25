@@ -1,7 +1,7 @@
-import { Module } from '@martinoooo/dependency-injection';
+import { Scope } from '@martinoooo/dependency-injection';
 import Koa from 'koa';
 
-@Module({
+@Scope({
   providers: [Koa],
 })
 export class AppModule {
