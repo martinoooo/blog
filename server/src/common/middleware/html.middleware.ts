@@ -1,13 +1,14 @@
-import { Injectable, NestMiddleware } from '@nestjs/common';
+import { Middleware, KoaMiddlewareInterface } from '@martinoooo/route-plugin';
 
-@Injectable()
-export class HtmlMiddleware implements NestMiddleware {
-  use(req, res, next) {
-    const { url } = req;
+@Middleware({ priority: 4 })
+export class HtmlMiddleware implements KoaMiddlewareInterface {
+  async use(context, next) {
+    const { request } = context;
+    const { url } = request;
     if (url.indexOf('/api') !== -1) {
-      next();
+      await next();
     } else {
-      res.render('view');
+      await context.render('view');
     }
   }
 }
