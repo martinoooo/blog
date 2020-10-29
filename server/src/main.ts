@@ -7,6 +7,7 @@ import serve from 'koa-static';
 import loadJs from './common/helper/loadJs';
 import { HtmlMiddleware } from './common/middleware/html.middleware';
 import { LoggerMiddleware } from './common/middleware/logger.middleware';
+import { HttpExceptionFilter } from './common/filters/http-exception.filter';
 import { join } from 'path';
 
 const app = new Koa();
@@ -31,6 +32,7 @@ useKoaServer(app, {
     HtmlMiddleware,
     LoggerMiddleware,
   ],
+  catcher: HttpExceptionFilter,
 });
 
 loadJs();

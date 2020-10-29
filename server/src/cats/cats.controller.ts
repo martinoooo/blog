@@ -29,7 +29,9 @@ export class CatsController {
 
   @Get('/articles/list')
   async findList(ctx: any) {
+    throw new Error('opsss');
     const entries = await this.catsService.findList();
+    console.log(entries);
     // return entries;
     ctx.body = entries;
   }
