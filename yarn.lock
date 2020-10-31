@@ -22,10 +22,10 @@
     reflect-metadata "^0.1.13"
     typescript "^4.0.3"
 
-"@martinoooo/route-plugin@0.0.2":
-  version "0.0.2"
-  resolved "https://registry.npm.taobao.org/@martinoooo/route-plugin/download/@martinoooo/route-plugin-0.0.2.tgz?cache=0&sync_timestamp=1603617845932&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40martinoooo%2Froute-plugin%2Fdownload%2F%40martinoooo%2Froute-plugin-0.0.2.tgz#5bc83fbd34dc7e4ab03772036380a308b7f41254"
-  integrity sha1-W8g/vTTcfkqwN3IDY4CjCLf0ElQ=
+"@martinoooo/route-plugin@0.0.3":
+  version "0.0.3"
+  resolved "https://registry.npm.taobao.org/@martinoooo/route-plugin/download/@martinoooo/route-plugin-0.0.3.tgz?cache=0&sync_timestamp=1604124912452&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40martinoooo%2Froute-plugin%2Fdownload%2F%40martinoooo%2Froute-plugin-0.0.3.tgz#a8406d0646d9d80415ef150efd0e0ae605fec8eb"
+  integrity sha1-qEBtBkbZ2AQV7xUO/Q4K5gX+yOs=
   dependencies:
     "@martinoooo/dependency-injection" "0.0.4"
     koa "^2.13.0"

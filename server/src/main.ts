@@ -8,6 +8,7 @@ import loadJs from './common/helper/loadJs';
 import { HtmlMiddleware } from './common/middleware/html.middleware';
 import { LoggerMiddleware } from './common/middleware/logger.middleware';
 import { HttpExceptionFilter } from './common/filters/http-exception.filter';
+import { TransformInterceptor } from './common/interceptors/transform.interceptor';
 import { join } from 'path';
 
 const app = new Koa();
@@ -18,7 +19,7 @@ useKoaServer(app, {
     {
       priority: 1,
       middleware: hbs.middleware({
-        viewPath: __dirname + '/views',
+        viewPath: join(__dirname, '..', 'views'),
       }),
     },
     {
@@ -33,6 +34,7 @@ useKoaServer(app, {
     LoggerMiddleware,
   ],
   catcher: HttpExceptionFilter,
+  interceptors: [TransformInterceptor],
 });
 
 loadJs();

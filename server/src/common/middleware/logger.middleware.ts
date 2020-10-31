@@ -4,7 +4,8 @@ import { Middleware, KoaMiddlewareInterface } from '@martinoooo/route-plugin';
 export class LoggerMiddleware implements KoaMiddlewareInterface {
   async use(context: any, next: any) {
     console.log(`Request...`);
+    const now = Date.now();
     await next();
-    console.log('end');
+    console.log(`end ${Date.now() - now}ms`);
   }
 }
