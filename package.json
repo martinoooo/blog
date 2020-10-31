@@ -10,7 +10,7 @@
     "server"
   ],
   "scripts": {
-    "gcp-build": "cd server && npm run build",
+    "gcp-build": "cd server && yarn install && npm run build",
     "start": "node server/dist/main"
   }
 }

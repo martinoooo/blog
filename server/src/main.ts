@@ -1,20 +1,41 @@
-import { NestFactory } from '@nestjs/core';
-import { NestExpressApplication } from '@nestjs/platform-express';
-import { AppModule } from './app.module';
-import { logger } from './common/middleware/logger.middleware';
-import { join } from 'path';
+import 'reflect-metadata';
+import { useKoaServer } from '@martinoooo/route-plugin';
+import { CatsController } from './cats/cats.controller';
+import Koa from 'koa';
+import hbs from 'koa-hbs';
+import serve from 'koa-static';
 import loadJs from './common/helper/loadJs';
+import { HtmlMiddleware } from './common/middleware/html.middleware';
+import { LoggerMiddleware } from './common/middleware/logger.middleware';
+import { HttpExceptionFilter } from './common/filters/http-exception.filter';
+import { TransformInterceptor } from './common/interceptors/transform.interceptor';
+import { join } from 'path';
 
-async function bootstrap() {
-  const app = await NestFactory.create<NestExpressApplication>(AppModule);
-  app.use(logger);
+const app = new Koa();
 
-  app.useStaticAssets(join(__dirname, '../..', 'client/dist'));
-  app.useStaticAssets(join(__dirname, '../..', 'articles'));
-  app.setBaseViewsDir(join(__dirname, '..', 'views'));
-  app.setViewEngine('hbs');
-  loadJs();
+useKoaServer(app, {
+  routers: [CatsController],
+  middlewares: [
+    {
+      priority: 1,
+      middleware: hbs.middleware({
+        viewPath: join(__dirname, '..', 'views'),
+      }),
+    },
+    {
+      priority: 2,
+      middleware: serve(join(__dirname, '../..', 'client/dist')),
+    },
+    {
+      priority: 3,
+      middleware: serve(join(__dirname, '../..', 'articles')),
+    },
+    HtmlMiddleware,
+    LoggerMiddleware,
+  ],
+  catcher: HttpExceptionFilter,
+  interceptors: [TransformInterceptor],
+});
 
-  await app.listen(Number(process.env.PORT) || 3000);
-}
-bootstrap();
+loadJs();
+app.listen(Number(process.env.PORT) || 3000);

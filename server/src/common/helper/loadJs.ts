@@ -1,4 +1,4 @@
-import hbs = require('hbs');
+import hbs from 'koa-hbs';
 import fg = require('fast-glob');
 import path = require('path');
 
@@ -10,7 +10,7 @@ export default () => {
 
   const config = require(entries[0]);
 
-  hbs.registerHelper('load_js', file => {
+  hbs.registerHelper('load_js', (file) => {
     const src = config[file];
     if (src) {
       let scriptStr = `<script src="${src}" charset="utf-8"`;
@@ -20,7 +20,7 @@ export default () => {
     return new hbs.SafeString('');
   });
 
-  hbs.registerHelper('add_manifest', file => {
+  hbs.registerHelper('add_manifest', (file) => {
     const scriptStr = `<script>window.manifest = ${JSON.stringify(
       config,
     )}</script>`;
