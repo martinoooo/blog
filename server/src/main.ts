@@ -38,4 +38,4 @@ useKoaServer(app, {
 });
 
 loadJs();
-app.listen(3001);
+app.listen(Number(process.env.PORT) || 3000);
