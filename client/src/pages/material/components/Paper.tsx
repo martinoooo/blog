@@ -12,6 +12,8 @@ const useStyles = makeStyles((theme: Theme) =>
       flex: 'auto',
       margin: '0 16px',
       padding: '20px',
+      overflow: 'hidden',
+      'overflow-x': 'scroll'
     },
   }),
 );
