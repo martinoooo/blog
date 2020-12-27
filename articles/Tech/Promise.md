@@ -88,3 +88,60 @@ class MPromise implements IMPromise {
  };
 ```
 
+可以看到，当我们的resolve的是一个值的时候，那么就会去执行_FulfilledTaskQueue里面注册的函数。而当value的值还是一个promsie的时候，则会通过promiseResolveThenableJob这个函数对value这个值进行一个包装。
+
+再来看then function
+
+```typescript
+  then = (
+    onFulfilled: thenFulfillExecutor | any,
+    onRejected?: thenRejectExecutor
+  ): MPromise =>
+    new MPromise((resolve: resolve, reject: reject) => {
+      if (!onRejected) {
+        onRejected = () => {};
+      }
+      const registerResolveTask = () => {
+        // code
+      };
+
+      const registerRejectTask = () => {
+        // code
+      };
+
+      const _FactExecuteTask = {
+        resolveTask: () => queueMicrotask(registerResolveTask),
+        rejectTask: () => queueMicrotask(registerRejectTask),
+      };
+
+      switch (this.status) {
+        case "PENDING":
+          this._FulfilledTaskQueue.push(_FactExecuteTask.resolveTask);
+          this._RejectedTaskQueue.push(_FactExecuteTask.rejectTask);
+          break;
+        case "FULFILLED":
+          _FactExecuteTask.resolveTask();
+          break;
+        case "REJECTED":
+          _FactExecuteTask.rejectTask();
+          break;
+      }
+    });
+
+```
+
+可以看到将任务放入微任务队列的是在then方法里面。换句话说，只要调用一个then，那么就会触发一个微任务时序。
+
+再来看promiseResolveThenableJob的逻辑：
+
+```typescript
+ private promiseResolveThenableJob = (instance) => {
+    return new MPromise((r) => {
+      instance.then((ret) => r(ret));
+    });
+  };
+```
+
+这个函数同样用一个promise进行了包装。
+
+因此在上一步当我们resolve的是一个promise的时候，一共用了两个then对值进行了包装，因此这个promise会消耗两个微任务时序，即使他是一个 Promise.resolve()。
