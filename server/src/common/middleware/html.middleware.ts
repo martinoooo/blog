@@ -1,6 +1,6 @@
 import { Middleware, KoaMiddlewareInterface } from '@martinoooo/route-plugin';
 
-@Middleware({ priority: 4 })
+@Middleware({ priority: 5 })
 export class HtmlMiddleware implements KoaMiddlewareInterface {
   async use(context, next) {
     const { request } = context;

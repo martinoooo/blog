@@ -1,12 +1,9 @@
 import * as React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
+import { makeStyles, AppBar, Toolbar, Typography } from '@material-ui/core';
 import SideDrawer from './SideDrawer';
 import { BLOG_NAME } from '../../../constants';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
   },

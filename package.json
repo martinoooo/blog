@@ -11,6 +11,8 @@
   ],
   "scripts": {
     "gcp-build": "cd server && yarn install && npm run build",
-    "start": "node server/dist/main"
+    "start": "node server/dist/main",
+    "client": "cd client && yarn dev",
+    "server": "cd server && yarn start:dev"
   }
 }

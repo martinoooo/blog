@@ -1,10 +1,14 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
+import {
+  createStyles,
+  Theme,
+  makeStyles,
+  Paper,
+  LinearProgress,
+} from '@material-ui/core';
 import { getArticle } from '../../../api';
-import Paper from '@material-ui/core/Paper';
-import LinearProgress from '@material-ui/core/LinearProgress';
 import ReactMarkdown from 'react-markdown';
-import hljs from 'highlight.js';
+// import hljs from 'highlight.js';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -13,13 +17,13 @@ const useStyles = makeStyles((theme: Theme) =>
       margin: '0 16px',
       padding: '20px',
       overflow: 'hidden',
-      'overflow-x': 'scroll'
+      'overflow-x': 'scroll',
     },
   }),
 );
 
 interface IProps {
-  selectArticle: string;
+  selectArticle?: string;
 }
 
 export default function MediaCard({ selectArticle }: IProps) {
@@ -32,7 +36,7 @@ export default function MediaCard({ selectArticle }: IProps) {
     if (selectArticle) {
       setLoading(true);
       getArticle(selectArticle)
-        .then(res => {
+        .then((res) => {
           setArticle(res);
           // hljs.highlightBlock(articeEle.current);
         })

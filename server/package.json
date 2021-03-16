@@ -12,6 +12,7 @@
   "dependencies": {
     "@martinoooo/dependency-injection": "^0.0.4",
     "@martinoooo/route-plugin": "0.0.3",
+    "axios": "^0.21.1",
     "fast-glob": "^3.2.4",
     "js-base64": "^3.5.2",
     "koa": "^2.13.0",

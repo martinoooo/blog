@@ -13,6 +13,8 @@ import { join } from 'path';
 
 const app = new Koa();
 
+app.use(serve(join(__dirname, '../..', 'client/src')));
+
 useKoaServer(app, {
   routers: [CatsController],
   middlewares: [
@@ -28,6 +30,12 @@ useKoaServer(app, {
     },
     {
       priority: 3,
+      middleware: serve(join(__dirname, '../..', 'client'), {
+        index: 'none',
+      }),
+    },
+    {
+      priority: 4,
       middleware: serve(join(__dirname, '../..', 'articles')),
     },
     HtmlMiddleware,
@@ -37,5 +45,5 @@ useKoaServer(app, {
   interceptors: [TransformInterceptor],
 });
 
-loadJs();
+// loadJs();
 app.listen(Number(process.env.PORT) || 8080);

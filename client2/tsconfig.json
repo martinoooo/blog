@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "sourceMap": true,
+    "noImplicitAny": true,
+    "module": "esnext",
+    "target": "es5",
+    "jsx": "react",
+    "moduleResolution": "node",
+    "importHelpers": true,
+    "lib": ["es5", "es2015", "es2016", "dom"],
+    "baseUrl": ".",
+    "outDir": "dist",
+    "paths": {
+      "#components/*": ["./src/components/*"],
+      "#constants/*": ["./src/constants/*"],
+      "#api/*": ["./src/api/*"]
+    }
+  },
+  "include": ["src"],
+  "exclude": ["node_modules"]
+}

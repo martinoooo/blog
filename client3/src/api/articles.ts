@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { ISelectArticle } from '../definetions';
+// import { ISelectArticle } from '../definetions';
 
 export const getArticleList = () => {
   return axios.get('/api/articles/list').then(({ data: { data } }) => data);

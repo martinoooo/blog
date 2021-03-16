@@ -16,15 +16,25 @@
 <body>
   <script>
     (function () {
-      const ui = localStorage.getItem('ui') || 'material';
-      const path = manifest[ui + '.js'];
-      const script = document.createElement('script');
-      script.setAttribute('src', path);
-      document.body.appendChild(script);
+      // const ui = localStorage.getItem('ui') || 'material';
+      // const path = manifest[ui + '.js'];
+      // const script = document.createElement('script');
+      // script.setAttribute('src', path);
+      // document.body.appendChild(script);
     })()
   </script>
-  <div id="app"></div>
-  {{ load_js 'vendors.js'}}
+  <div id="root"></div>
+  <!-- if development -->
+  <script type="module">
+    import RefreshRuntime from "http://localhost:3000/@react-refresh"
+    RefreshRuntime.injectIntoGlobalHook(window)
+    window.$RefreshReg$ = () => { }
+    window.$RefreshSig$ = () => (type) => type
+    window.__vite_plugin_react_preamble_installed__ = true
+  </script>
+  <script type="module" src="http://localhost:3000/@vite/client"></script>
+  <script type="module" src="http://localhost:3000/src/main.tsx"></script>
+  {{!-- {{ load_js 'vendors.js'}} --}}
 </body>
 
 </html>

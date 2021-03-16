@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
+import {
+  createStyles,
+  Theme,
+  makeStyles,
+  CircularProgress,
+  List,
+} from '@material-ui/core';
 import { getArticleList } from '../../../api';
-import CircularProgress from '@material-ui/core/CircularProgress';
-import List from '@material-ui/core/List';
 import ListItem from './ListItem';
 import Paper from './Paper';
 import { ISelectArticle, IFolders } from '../../../definetions';
@@ -26,11 +30,13 @@ export default function MediaCard() {
   const classes = useStyles({});
   const [list, setList] = useState<IFolders[]>([]);
   const [loading, setLoading] = useState(true);
-  const [selectArticle, setSelectArticle] = useState<ISelectArticle>(null);
+  const [selectArticle, setSelectArticle] = useState<
+    ISelectArticle | undefined
+  >();
 
   useEffect(() => {
     getArticleList()
-      .then(res => {
+      .then((res) => {
         setList(res);
         const folder = res[0];
         setSelectArticle({
@@ -38,7 +44,7 @@ export default function MediaCard() {
           name: folder.children[0].path,
         });
       })
-      .catch(err => {
+      .catch((err) => {
         // console.log(err);
       })
       .finally(() => {
@@ -64,7 +70,7 @@ export default function MediaCard() {
             aria-labelledby="nested-list-subheader"
             className={classes.list}
           >
-            {list.map(folder => (
+            {list.map((folder) => (
               <ListItem
                 key={folder.name}
                 text={folder.name}

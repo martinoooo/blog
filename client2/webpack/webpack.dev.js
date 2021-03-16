@@ -9,7 +9,7 @@ module.exports = merge(common, {
   devServer: {
     contentBase: path.resolve(__dirname, '../dist'),
     // hot: true, // 设置HMR，使页面不刷新的情况下重载
-    // writeToDisk: true,
+    writeToDisk: true,
     port: 8081,
   },
   output: {

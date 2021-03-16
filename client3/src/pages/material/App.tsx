@@ -1,8 +1,7 @@
 import React from 'react';
 import Layout from './components/Layout';
-import { createMuiTheme } from '@material-ui/core/styles';
+import { createMuiTheme, CircularProgress } from '@material-ui/core';
 import { ThemeProvider } from '@material-ui/styles';
-import CircularProgress from '@material-ui/core/CircularProgress';
 import Home from './components/Home';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import './index.less';
