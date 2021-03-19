@@ -1,30 +1,44 @@
 import React from 'react';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import Home from './pages/Home';
 import './App.less';
+
+const Blog = React.lazy(() => import('./pages/Blog'));
+const About = React.lazy(() => import('./pages/About'));
 
 function App() {
   return (
     <div className="App">
-      <header className="header">
-        <div className="name">
-          <a href="/">
-            <h1>MARTIN</h1>
-          </a>
-        </div>
-        <div className="navigation">
-          <nav>
-            <a href="/blog">Blog</a>
-            <a href="/note">Note</a>
-            <a href="/project">Project</a>
-            <a href="/about">About</a>
-          </nav>
-        </div>
-      </header>
-      <main className="main">
-        <section className="introduce">
-          <h1>Hi. 🥳 </h1>
-          <h3>Hello World.</h3>
-        </section>
-      </main>
+      <Router>
+        <header className="header">
+          <div className="name">
+            <Link to="/">
+              <h1>MARTIN</h1>
+            </Link>
+          </div>
+          <div className="navigation">
+            <nav>
+              <Link to="/blog">Blog</Link>
+              <Link to="/about">About</Link>
+            </nav>
+          </div>
+        </header>
+        <main className="main">
+          <React.Suspense
+            fallback={
+              <div style={{ marginLeft: '50%', marginTop: '20px' }}>
+                {/* <CircularProgress /> */}
+              </div>
+            }
+          >
+            <Switch>
+              <Route exact path="/" component={Home}></Route>
+              <Route path="/blog" component={Blog}></Route>
+              <Route path="/about" component={About}></Route>
+            </Switch>
+          </React.Suspense>
+        </main>
+      </Router>
     </div>
   );
 }
