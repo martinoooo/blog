@@ -1,44 +1,23 @@
 import React, { useEffect, useState, useRef } from 'react';
-import {
-  createStyles,
-  Theme,
-  makeStyles,
-  Paper,
-  LinearProgress,
-} from '@material-ui/core';
+import { Paper, LinearProgress } from '@mui/material';
 import { getArticle } from '../../../api';
 import ReactMarkdown from 'react-markdown';
-// import hljs from 'highlight.js';
-
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    paper: {
-      flex: 'auto',
-      margin: '0 16px',
-      padding: '20px',
-      overflow: 'hidden',
-      'overflow-x': 'scroll',
-    },
-  }),
-);
 
 interface IProps {
   selectArticle?: string;
 }
 
 export default function MediaCard({ selectArticle }: IProps) {
-  const classes = useStyles({});
   const [article, setArticle] = useState('');
   const [loading, setLoading] = useState(false);
-  const articeEle = useRef(null);
+  const articeEle = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (selectArticle) {
       setLoading(true);
       getArticle(selectArticle)
-        .then((res) => {
+        .then((res: string) => {
           setArticle(res);
-          // hljs.highlightBlock(articeEle.current);
         })
         .finally(() => {
           setLoading(false);
@@ -47,10 +26,18 @@ export default function MediaCard({ selectArticle }: IProps) {
   }, [selectArticle]);
 
   return (
-    <Paper className={classes.paper}>
+    <Paper
+      sx={{
+        flex: 'auto',
+        margin: '0 16px',
+        padding: '20px',
+        overflow: 'hidden',
+        overflowX: 'scroll',
+      }}
+    >
       {loading && <LinearProgress />}
       <div ref={articeEle}>
-        <ReactMarkdown source={article}></ReactMarkdown>
+        <ReactMarkdown>{article}</ReactMarkdown>
       </div>
     </Paper>
   );

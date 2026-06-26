@@ -1,6 +1,5 @@
 import React from 'react';
 import {
-  makeStyles,
   Card,
   CardActionArea,
   CardActions,
@@ -8,28 +7,17 @@ import {
   CardMedia,
   Button,
   Typography,
-} from '@material-ui/core';
-import GitHubIcon from '@material-ui/icons/GitHub';
-// import Link from '@material-ui/core/Link';
-
-const useStyles = makeStyles({
-  root: {},
-  card: {
-    maxWidth: 345,
-    margin: '100px auto',
-  },
-  link: {},
-});
+} from '@mui/material';
+import GitHubIcon from '@mui/icons-material/GitHub';
 
 export default function ImgMediaCard() {
-  const classes = useStyles({});
   const goTo = (href: string) => {
     window.open(href);
   };
 
   return (
-    <div className={classes.root}>
-      <Card className={classes.card}>
+    <div>
+      <Card sx={{ maxWidth: 345, margin: '100px auto' }}>
         <CardActionArea>
           <CardMedia
             component="img"
@@ -53,7 +41,7 @@ export default function ImgMediaCard() {
             color="primary"
             onClick={() => goTo('https://github.com/martinoooo')}
           >
-            <GitHubIcon></GitHubIcon>
+            <GitHubIcon />
           </Button>
         </CardActions>
       </Card>

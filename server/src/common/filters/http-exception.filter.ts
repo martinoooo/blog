@@ -1,8 +1,9 @@
-import { Catch, KoaCatchInterface } from '@martinoooo/route-plugin';
+import { Context, Next } from 'koa';
 
-@Catch()
-export class HttpExceptionFilter implements KoaCatchInterface {
-  async catch(e: any, ctx: any) {
+export async function httpExceptionFilter(ctx: Context, next: Next) {
+  try {
+    await next();
+  } catch (e) {
     ctx.status = 500;
     ctx.body = {
       code: '9999',

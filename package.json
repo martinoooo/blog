@@ -5,6 +5,9 @@
   "private": true,
   "repository": "git@github.com:martinoooo/blog.git",
   "license": "MIT",
+  "engines": {
+    "node": ">=22.0.0"
+  },
   "workspaces": [
     "client",
     "server"

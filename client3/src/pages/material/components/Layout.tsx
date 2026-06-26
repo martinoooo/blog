@@ -1,32 +1,17 @@
 import * as React from 'react';
-import { makeStyles, AppBar, Toolbar, Typography } from '@material-ui/core';
+import { AppBar, Toolbar, Typography } from '@mui/material';
 import SideDrawer from './SideDrawer';
 import { BLOG_NAME } from '../../../constants';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
-  menuButton: {
-    marginRight: theme.spacing(2),
-  },
-  title: {
-    flexGrow: 1,
-  },
-}));
-
 export default function ButtonAppBar() {
-  const classes = useStyles({});
-
   return (
-    <div className={classes.root}>
+    <div style={{ flexGrow: 1 }}>
       <AppBar position="static">
         <Toolbar>
-          <SideDrawer></SideDrawer>
-          <Typography variant="h6" className={classes.title}>
+          <SideDrawer />
+          <Typography variant="h6" sx={{ flexGrow: 1 }}>
             {BLOG_NAME}
           </Typography>
-          {/* <Button color="inherit">Login</Button> */}
         </Toolbar>
       </AppBar>
     </div>

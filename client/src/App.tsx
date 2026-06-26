@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import Home from './pages/Home';
 import './App.less';
 
@@ -9,7 +9,7 @@ const About = React.lazy(() => import('./pages/About'));
 function App() {
   return (
     <div className="App">
-      <Router>
+      <BrowserRouter>
         <header className="header">
           <div className="name">
             <Link to="/">
@@ -31,14 +31,14 @@ function App() {
               </div>
             }
           >
-            <Switch>
-              <Route exact path="/" component={Home}></Route>
-              <Route path="/blog" component={Blog}></Route>
-              <Route path="/about" component={About}></Route>
-            </Switch>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/blog" element={<Blog />} />
+              <Route path="/about" element={<About />} />
+            </Routes>
           </React.Suspense>
         </main>
-      </Router>
+      </BrowserRouter>
     </div>
   );
 }

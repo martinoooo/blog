@@ -1,14 +1,11 @@
-import { Middleware, KoaMiddlewareInterface } from '@martinoooo/route-plugin';
+import { Context, Next } from 'koa';
 
-@Middleware({ priority: 5 })
-export class HtmlMiddleware implements KoaMiddlewareInterface {
-  async use(context, next) {
-    const { request } = context;
-    const { url } = request;
-    if (url.indexOf('/api') !== -1) {
-      await next();
-    } else {
-      await context.render('view');
-    }
+export async function htmlMiddleware(ctx: Context, next: Next) {
+  if (ctx.path.startsWith('/api')) {
+    await next();
+  } else {
+    await ctx.render('view', {
+      isDev: process.env.NODE_ENV !== 'production',
+    });
   }
 }

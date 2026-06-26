@@ -1,33 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import {
-  createStyles,
-  Theme,
-  makeStyles,
-  CircularProgress,
-  List,
-} from '@material-ui/core';
+import { CircularProgress, List } from '@mui/material';
 import { getArticleList } from '../../../api';
 import ListItem from './ListItem';
 import Paper from './Paper';
 import { ISelectArticle, IFolders } from '../../../definetions';
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      display: 'flex',
-      margin: 16,
-      'justify-content': 'center',
-    },
-    list: {
-      width: 250,
-      background: '#eceff1',
-      flexShrink: 0,
-    },
-  }),
-);
-
 export default function MediaCard() {
-  const classes = useStyles({});
   const [list, setList] = useState<IFolders[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectArticle, setSelectArticle] = useState<
@@ -44,9 +22,7 @@ export default function MediaCard() {
           name: folder.children[0].path,
         });
       })
-      .catch((err) => {
-        // console.log(err);
-      })
+      .catch(() => {})
       .finally(() => {
         setLoading(false);
       });
@@ -60,7 +36,7 @@ export default function MediaCard() {
   };
 
   return (
-    <div className={classes.root}>
+    <div style={{ display: 'flex', margin: 16, justifyContent: 'center' }}>
       {loading ? (
         <CircularProgress />
       ) : (
@@ -68,7 +44,7 @@ export default function MediaCard() {
           <List
             component="nav"
             aria-labelledby="nested-list-subheader"
-            className={classes.list}
+            sx={{ width: 250, background: '#eceff1', flexShrink: 0 }}
           >
             {list.map((folder) => (
               <ListItem

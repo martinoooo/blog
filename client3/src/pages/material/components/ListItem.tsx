@@ -1,24 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import {
-  createStyles,
-  Theme,
-  makeStyles,
   List,
-  ListItem,
+  ListItemButton,
   ListItemText,
   Collapse,
-} from '@material-ui/core';
-import ExpandLess from '@material-ui/icons/ExpandLess';
-import ExpandMore from '@material-ui/icons/ExpandMore';
+} from '@mui/material';
+import ExpandLess from '@mui/icons-material/ExpandLess';
+import ExpandMore from '@mui/icons-material/ExpandMore';
 import { ISelectArticle, IFolder } from '../../../definetions';
-
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    nested: {
-      paddingLeft: theme.spacing(4),
-    },
-  }),
-);
 
 interface IProps {
   text: string;
@@ -28,7 +17,6 @@ interface IProps {
 }
 
 export default function ({ text, node, handleSelect, select }: IProps) {
-  const classes = useStyles({});
   const [open, setOpen] = useState(true);
 
   const handleExpand = () => {
@@ -41,24 +29,23 @@ export default function ({ text, node, handleSelect, select }: IProps) {
 
   return (
     <>
-      <ListItem button onClick={handleExpand}>
+      <ListItemButton onClick={handleExpand}>
         <ListItemText primary={text} />
         {open ? <ExpandLess /> : <ExpandMore />}
-      </ListItem>
+      </ListItemButton>
       <Collapse in={open} timeout="auto">
         <List component="div" disablePadding>
           {node.map((article: IFolder) => (
-            <ListItem
+            <ListItemButton
               key={article.name}
-              button
-              className={classes.nested}
+              sx={{ pl: 4 }}
               onClick={() => handleListItemClick(article.path)}
               selected={
                 select && select.folder === text && select.name === article.path
               }
             >
               <ListItemText primary={article.name} />
-            </ListItem>
+            </ListItemButton>
           ))}
         </List>
       </Collapse>

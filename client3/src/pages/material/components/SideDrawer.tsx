@@ -2,27 +2,18 @@ import * as React from 'react';
 import {
   Drawer,
   List,
-  ListItem,
+  ListItemButton,
   ListItemIcon,
   ListItemText,
   IconButton,
-} from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
-import MenuIcon from '@material-ui/icons/Menu';
+} from '@mui/material';
+import MenuIcon from '@mui/icons-material/Menu';
 import { Link } from 'react-router-dom';
 import { NAV } from '../constants';
 
-const useStyles = makeStyles((theme) => ({
-  menuButton: {
-    marginRight: theme.spacing(2),
-  },
-  list: {
-    width: 250,
-  },
-}));
+const listWidth = 250;
 
 export default function SideDrawer() {
-  const classes = useStyles({});
   const [visible, setVisible] = React.useState(false);
 
   const toggleDrawer = (open: boolean) => (
@@ -35,31 +26,26 @@ export default function SideDrawer() {
     ) {
       return;
     }
-
     setVisible(open);
   };
 
   const sideList = () => (
     <div
-      className={classes.list}
+      style={{ width: listWidth }}
       role="presentation"
       onClick={toggleDrawer(false)}
       onKeyDown={toggleDrawer(false)}
     >
       <List>
-        {NAV.map((link, index) => (
-          <ListItem
-            button
-            component={Link}
-            to={{
-              pathname: link.link,
-              search: window.location.search,
-            }}
+        {NAV.map((link) => (
+          <ListItemButton
             key={link.name}
+            component={Link}
+            to={link.link}
           >
             <ListItemIcon>{link.icon}</ListItemIcon>
             <ListItemText primary={link.name} />
-          </ListItem>
+          </ListItemButton>
         ))}
       </List>
     </div>
@@ -69,7 +55,7 @@ export default function SideDrawer() {
     <div>
       <IconButton
         edge="start"
-        className={classes.menuButton}
+        sx={{ mr: 2 }}
         color="inherit"
         aria-label="menu"
         onClick={toggleDrawer(true)}

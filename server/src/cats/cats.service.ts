@@ -1,13 +1,11 @@
-import { Provider } from '@martinoooo/route-plugin';
-const axios = require('axios');
+import axios from 'axios';
 import { Base64 } from 'js-base64';
 import { ACCESS_TOKEN, GET_CONTENT } from '../config';
 
-@Provider()
 export class CatsService {
   private entries = null;
 
-  async findOne(name) {
+  async findOne(name: string) {
     const { data } = await axios.get(GET_CONTENT + encodeURI(name), {
       headers: { Authorization: `token ${ACCESS_TOKEN}` },
     });
@@ -24,7 +22,7 @@ export class CatsService {
       const { data } = await axios.get(GET_CONTENT + encodeURI(folder.path), {
         headers: { Authorization: `token ${ACCESS_TOKEN}` },
       });
-      const children = data.map((n) => ({
+      const children = data.map((n: { name: string; path: string }) => ({
         name: n.name.replace('.md', ''),
         path: n.path,
       }));

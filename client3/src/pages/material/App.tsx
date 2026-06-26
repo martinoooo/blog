@@ -1,16 +1,16 @@
 import React from 'react';
 import Layout from './components/Layout';
-import { createMuiTheme, CircularProgress } from '@material-ui/core';
-import { ThemeProvider } from '@material-ui/styles';
+import { CircularProgress } from '@mui/material';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Home from './components/Home';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './index.less';
 
 const About = React.lazy(() => import('./components/About'));
 const Blog = React.lazy(() => import('./components/Blog'));
 const UI = React.lazy(() => import('./components/Ui'));
 
-const theme = createMuiTheme({
+const theme = createTheme({
   palette: {
     primary: {
       main: '#000',
@@ -21,8 +21,8 @@ const theme = createMuiTheme({
 export default function App() {
   return (
     <ThemeProvider theme={theme}>
-      <Router>
-        <Layout></Layout>
+      <BrowserRouter>
+        <Layout />
         <React.Suspense
           fallback={
             <div style={{ marginLeft: '50%', marginTop: '20px' }}>
@@ -30,14 +30,14 @@ export default function App() {
             </div>
           }
         >
-          <Switch>
-            <Route exact path="/" component={Home}></Route>
-            <Route path="/blog" component={Blog}></Route>
-            <Route path="/about" component={About}></Route>
-            <Route path="/ui" component={UI}></Route>
-          </Switch>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/blog" element={<Blog />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/ui" element={<UI />} />
+          </Routes>
         </React.Suspense>
-      </Router>
+      </BrowserRouter>
     </ThemeProvider>
   );
 }

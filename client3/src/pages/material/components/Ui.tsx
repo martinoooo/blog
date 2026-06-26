@@ -1,30 +1,14 @@
 import React from 'react';
 import {
-  makeStyles,
   Card,
   CardActionArea,
   CardContent,
   CardMedia,
   Typography,
-} from '@material-ui/core';
+} from '@mui/material';
 import { UI } from '#contants/ui';
 
-const useStyles = makeStyles({
-  root: {
-    display: 'flex',
-    'align-items': 'center',
-    height: 'calc( 100vh - 64px)',
-    'justify-content': 'space-around',
-  },
-  card: {
-    width: 345,
-  },
-  link: {},
-});
-
 export default function ImgMediaCard() {
-  const classes = useStyles({});
-
   const changeUI = (value: string) => {
     try {
       localStorage.setItem('ui', value);
@@ -35,11 +19,18 @@ export default function ImgMediaCard() {
   };
 
   return (
-    <div className={classes.root}>
+    <div
+      style={{
+        display: 'flex',
+        alignItems: 'center',
+        height: 'calc(100vh - 64px)',
+        justifyContent: 'space-around',
+      }}
+    >
       {UI.map((item) => (
         <Card
           key={item.value}
-          className={classes.card}
+          sx={{ width: 345 }}
           onClick={() => changeUI(item.value)}
         >
           <CardActionArea>

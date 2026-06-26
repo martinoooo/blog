@@ -11,7 +11,7 @@ usage:
 	@echo $(usage)
 
 install: 
-	yarn --registry=https://registry.npm.taobao.org  --frozen-lockfile
+	yarn --frozen-lockfile
 
 serve:
 	cd server && yarn start:dev

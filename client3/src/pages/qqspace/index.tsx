@@ -1,5 +1,6 @@
 import * as React from 'react';
-import * as ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
+
 export const Hello = () => (
   <>
     <h1 style={{ textAlign: 'center' }}>👷‍♀️ 施工中 👷</h1>
@@ -7,4 +8,6 @@ export const Hello = () => (
   </>
 );
 
-ReactDOM.render(<Hello />, document.getElementById('app'));
+const container = document.getElementById('app')!;
+const root = createRoot(container);
+root.render(<Hello />);

@@ -1,20 +1,16 @@
-import { Router, Get, Query } from '@martinoooo/route-plugin';
+import Router from '@koa/router';
 import { CatsService } from './cats.service';
 
-@Router('api')
-export class CatsController {
-  constructor(private readonly catsService: CatsService) {}
+const router = new Router({ prefix: '/api' });
+const catsService = new CatsService();
 
-  @Get('/articles/list')
-  async findList(ctx: any) {
-    const entries = await this.catsService.findList();
-    return entries;
-  }
+router.get('/articles/list', async (ctx) => {
+  ctx.body = await catsService.findList();
+});
 
-  @Get('/article')
-  async findOne(@Query() query: any, ctx: any) {
-    const { name } = query;
-    const file = await this.catsService.findOne(name);
-    return file;
-  }
-}
+router.get('/article', async (ctx) => {
+  const { name } = ctx.query;
+  ctx.body = await catsService.findOne(name);
+});
+
+export default router;
