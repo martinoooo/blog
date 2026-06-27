@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { CircularProgress, List } from '@mui/material';
-import { getArticleList } from '../../../api';
+import { getArticleList } from '../../api';
 import ListItem from './ListItem';
 import Paper from './Paper';
-import { ISelectArticle, IFolders } from '../../../definetions';
+import { ISelectArticle, IFolders } from '../../definetions';
 
 export default function MediaCard() {
   const [list, setList] = useState<IFolders[]>([]);

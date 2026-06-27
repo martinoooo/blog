@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { Paper, LinearProgress } from '@mui/material';
-import { getArticle } from '../../../api';
+import { getArticle } from '../../api';
 import ReactMarkdown from 'react-markdown';
 
 interface IProps {

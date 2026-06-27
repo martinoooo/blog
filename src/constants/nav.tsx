@@ -21,8 +21,4 @@ export const NAV: INav = [
     name: 'About',
     link: '/about',
   },
-  {
-    name: 'Change UI',
-    link: '/ui',
-  },
 ];

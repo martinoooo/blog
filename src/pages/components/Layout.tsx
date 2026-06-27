@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { AppBar, Toolbar, Typography } from '@mui/material';
 import SideDrawer from './SideDrawer';
-import { BLOG_NAME } from '../../../constants';
+import { BLOG_NAME } from '../../constants';
 
 export default function ButtonAppBar() {
   return (

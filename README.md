@@ -1,30 +1,52 @@
 # blog
 
-my website
+个人博客网站，基于 Vite + React 18 + Material UI，文章以 Markdown 格式存储在 `articles/` 目录下，构建时通过 `import.meta.glob` 打包进静态产物，部署在 Vercel。
 
-## Description
+## 项目结构
 
-[Blog](http://www.martinqaq.monster/)
-
-## Installation
-
-```bash
-$ make install
+```
+blog/
+├── src/           # 前端源码
+│   ├── api/       # 文章数据获取（构建时 glob 导入）
+│   ├── pages/     # 页面组件
+│   └── constants/ # 常量配置
+├── articles/      # Markdown 文章（按子目录分类）
+├── dist/          # 构建产物（Vite 输出）
+├── index.html     # HTML 入口
+├── vite.config.ts
+├── tsconfig.json
+└── vercel.json    # Vercel 部署配置
 ```
 
-## Running the app
+## 使用
 
 ```bash
-# development
-由于接口里面使用了GitHub的获取文章的api，里面用到了access_token，是私密的，无法上传，因此若要运行这个代码，需要在server/src里面添加config.ts文件，里面需要导出你自己的ACCESS_TOKEN和GET_CONTENT（获取文章的github地址）才能运行。
+# 安装依赖
+pnpm install
 
-$ make web (如果要单独打包某个页面，可以加 page=xxx ---> xxx为client/src/pages下面的文件夹名字)
+# 本地开发
+pnpm dev
 
-(等待web构建完成之后)
+# 构建
+pnpm build
 
-$ make serve
-$ open http://localhost:8080/
-
-# deploy
-$ make deploy
+# 预览构建产物
+pnpm preview
 ```
+
+## 添加文章
+
+在 `articles/` 目录下按分类子目录放置 `.md` 文件即可，构建时自动打包。
+
+```
+articles/
+├── React/
+│   └── xxx.md
+├── Tech/
+│   └── xxx.md
+└── ...
+```
+
+## 部署
+
+项目配置了 `vercel.json`，连上 Vercel 后自动构建部署为静态站点。

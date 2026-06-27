@@ -7,7 +7,7 @@ import {
 } from '@mui/material';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
-import { ISelectArticle, IFolder } from '../../../definetions';
+import { ISelectArticle, IFolder } from '../../definetions';
 
 interface IProps {
   text: string;

@@ -8,7 +8,6 @@ import './index.less';
 
 const About = React.lazy(() => import('./components/About'));
 const Blog = React.lazy(() => import('./components/Blog'));
-const UI = React.lazy(() => import('./components/Ui'));
 
 const theme = createTheme({
   palette: {
@@ -34,7 +33,6 @@ export default function App() {
             <Route path="/" element={<Home />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/about" element={<About />} />
-            <Route path="/ui" element={<UI />} />
           </Routes>
         </React.Suspense>
       </BrowserRouter>
